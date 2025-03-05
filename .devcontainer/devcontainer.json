@@ -1,0 +1,41 @@
+{
+    "name": "ROS Noetic Development Container",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "USERNAME": "ros",
+            "USER_UID": "1000",
+            "USER_GID": "1000"
+        },
+        "platforms": ["linux/arm64"]
+    },
+    "remoteUser": "ros",
+    "workspaceFolder": "/home/ros/ws",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/ros/ws,type=bind,consistency=cached",
+    "customizations": {
+        "vscode": {
+            "extensions":[
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-themes",
+                "twxs.cmake",
+                "donjayamanne.python-extension-pack",
+                "eamodio.gitlens",
+                "ms-iot.vscode-ros"
+            ]
+        }
+    },
+    "containerEnv": {
+        "DISPLAY": "${localEnv:DISPLAY}",
+        "ROS_LOCALHOST_ONLY": "1",
+        "ROS_DOMAIN_ID": "42",
+        "PATH": "/opt/ros/noetic/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    },
+    "runArgs": [
+        "--net=host",
+        "--pid=host",
+        "--ipc=host"
+    ],
+    "mounts": [
+        "source=${localEnv:HOME}/.Xauthority,target=/home/ros/.Xauthority,type=bind,consistency=cached"
+    ]
+}

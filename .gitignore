@@ -6,3 +6,5 @@ dist/
 __pycache__/
 docs
 .DS_Store
+.venv
+.env
